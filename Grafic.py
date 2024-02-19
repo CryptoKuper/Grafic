@@ -13,7 +13,8 @@ unique_values = data['whoAmI'].unique()
 one_hot_encoded = pd.DataFrame(0, columns=unique_values, index=data.index)
 
 # Установка 1 в соответствующих позициях
-one_hot_encoded.loc[data['whoAmI'], data['whoAmI']] = 1
+for index, value in enumerate(data['whoAmI']):
+    one_hot_encoded.at[index, value] = 1
 
 # Объединение с исходным DataFrame
 data_one_hot = pd.concat([data, one_hot_encoded], axis=1)
